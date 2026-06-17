@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: tanuj7777777/wanderlust-frontend:12
+          image: tanuj7777777/wanderlust-frontend:13
           ports:
             - containerPort: 5173
 ---
