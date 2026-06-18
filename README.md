@@ -1,707 +1,400 @@
-# 🚀 DevSecOps GitOps EKS Platform
+# 🚀 DevSecOps + GitOps Platform on AWS EKS
 
-Production-grade DevSecOps + GitOps platform for deploying a three-tier MERN application on AWS EKS using Jenkins, SonarQube, OWASP Dependency Check, Trivy, ArgoCD, Prometheus, and Grafana.
-
----
-
-# 📖 Project Overview
-
-This project demonstrates a complete end-to-end DevSecOps workflow:
-
-1. Developer pushes code to GitHub
-2. Jenkins triggers CI pipeline
-3. Security and quality scans are executed
-4. Docker images are built and pushed
-5. Kubernetes manifests are updated automatically
-6. ArgoCD detects Git changes
-7. Application is deployed to AWS EKS
-8. Prometheus and Grafana monitor workloads
+A production-style DevSecOps project demonstrating the deployment of a three-tier MERN application on Amazon EKS using Jenkins, SonarQube, OWASP Dependency Check, Trivy, Docker, ArgoCD, Prometheus, and Grafana.
 
 ---
 
-# 🏗️ Architecture
+## 📌 Project Deployment Flow
 
-## DevSecOps Workflow
+<p align="center">
+  <img src="./Assets/DevSecOps+GitOps.gif" alt="DevSecOps GitOps Flow" width="100%">
+</p>
+
+---
+
+## 🏗️ Architecture Overview
+
+This project implements a complete DevSecOps and GitOps workflow:
 
 ```text
 Developer
-    │
-    ▼
- GitHub Repository
-    │
-    ▼
- Jenkins CI Pipeline
-    │
-    ├── Trivy Scan
-    ├── OWASP Dependency Check
-    ├── SonarQube Analysis
-    │
-    ▼
- Docker Build
-    │
-    ▼
- DockerHub
-    │
-    ▼
- Update Kubernetes Manifests
-    │
-    ▼
- GitHub
-    │
-    ▼
- ArgoCD
-    │
-    ▼
- AWS EKS
-    │
-    ▼
- Production Deployment
-    │
-    ▼
- Prometheus + Grafana
+   │
+   ▼
+GitHub Repository
+   │
+   ▼
+Jenkins CI Pipeline
+   │
+   ├── OWASP Dependency Check
+   ├── SonarQube Analysis
+   ├── Trivy Security Scan
+   │
+   ▼
+Docker Build & Push
+   │
+   ▼
+DockerHub
+   │
+   ▼
+Jenkins CD Pipeline
+   │
+   ▼
+Update Kubernetes Manifests
+   │
+   ▼
+GitHub
+   │
+   ▼
+ArgoCD Auto Sync
+   │
+   ▼
+AWS EKS Cluster
+   │
+   ▼
+Kubernetes Deployment
+   │
+   ▼
+Prometheus + Grafana
+   │
+   ▼
+Email Notifications
 ```
 
 ---
 
-# 🛠️ Technology Stack
+## 🛠️ Technology Stack
 
-## Source Control
-
+### Source Control
 - GitHub
 
-## CI/CD
-
+### CI/CD
 - Jenkins
 - ArgoCD
 
-## Security
-
-- OWASP Dependency Check
-- Trivy
-- SonarQube
-
-## Containerization
-
+### Containerization
 - Docker
 
-## Kubernetes
+### Security
+- OWASP Dependency Check
+- SonarQube
+- Trivy
 
+### Kubernetes & Cloud
 - AWS EKS
+- Kubernetes
 - kubectl
 - eksctl
+- Redis
 
-## Monitoring
-
+### Monitoring
 - Prometheus
 - Grafana
 
-## Cache
+### Notifications
+- Gmail SMTP
+
+---
+
+## ☁️ AWS Infrastructure
+
+| Component | Configuration |
+|------------|---------------|
+| AWS Region | ap-south-1 (Mumbai) |
+| Jenkins Master | t3.small |
+| Jenkins Worker | t3.small |
+| EKS Worker Nodes | t3.small |
+| Storage | 30 GB |
+| Kubernetes | Amazon EKS |
+
+---
+
+## 🔄 CI Pipeline (Jenkins)
+
+### Stages
+
+✅ Code Checkout
+
+✅ OWASP Dependency Check
+
+✅ SonarQube Analysis
+
+✅ Trivy Filesystem Scan
+
+✅ Docker Image Build
+
+✅ Docker Image Push
+
+✅ Trigger CD Pipeline
+
+### Security Checks
+
+#### OWASP Dependency Check
+
+- Detect vulnerable dependencies
+- Generate security reports
+
+#### SonarQube
+
+- Code Quality Analysis
+- Bug Detection
+- Vulnerability Detection
+- Security Hotspots
+- Quality Gate Validation
+
+#### Trivy
+
+- Filesystem Scan
+- Vulnerability Detection
+- Secret Scanning
+- Misconfiguration Detection
+
+---
+
+## 🚀 CD Pipeline (GitOps)
+
+### Stages
+
+✅ Update Docker Image Version
+
+✅ Commit Changes to GitHub
+
+✅ ArgoCD Detects Changes
+
+✅ Automatic Sync
+
+✅ Kubernetes Rolling Deployment
+
+✅ Zero Downtime Release
+
+---
+
+## 🔐 DevSecOps Workflow
+
+```text
+GitHub
+   │
+   ▼
+Jenkins CI
+   │
+   ├── OWASP Scan
+   ├── SonarQube Scan
+   ├── Trivy Scan
+   │
+   ▼
+Docker Build
+   │
+   ▼
+DockerHub
+   │
+   ▼
+Jenkins CD
+   │
+   ▼
+Update Manifest
+   │
+   ▼
+GitHub
+   │
+   ▼
+ArgoCD
+   │
+   ▼
+AWS EKS
+```
+
+---
+
+## ☸️ Kubernetes Deployment
+
+Application Components:
+
+### Frontend
+
+- React
+- NodePort Service
+
+### Backend
+
+- Node.js
+- Express.js
+- REST APIs
+
+### Database
+
+- MongoDB
+
+### Cache
 
 - Redis
 
 ---
 
-# ✨ Key Features
+## 📊 Monitoring Stack
 
-✅ DevSecOps Integrated CI/CD
+### Prometheus
 
-✅ Automated Security Scanning
+Collects:
 
-✅ SonarQube Quality Gates
+- Node Metrics
+- Pod Metrics
+- Deployment Metrics
+- Cluster Metrics
 
-✅ Docker Image Management
+### Grafana
+
+Visualizes:
+
+- CPU Usage
+- Memory Usage
+- Pod Health
+- Node Health
+- Cluster Status
+
+---
+
+## 📧 Email Notifications
+
+Automatic email notifications are sent for:
+
+- Successful Build
+- Failed Build
+- Deployment Status
+- Pipeline Completion
+
+Configured using:
+
+- Gmail SMTP
+- Jenkins Email Extension Plugin
+
+---
+
+## 🔧 Tools Used
+
+| Tool | Purpose |
+|--------|---------|
+| GitHub | Source Code Management |
+| Jenkins | Continuous Integration |
+| Docker | Containerization |
+| OWASP | Dependency Security Scan |
+| SonarQube | Code Quality Analysis |
+| Trivy | Vulnerability Scanning |
+| ArgoCD | GitOps Deployment |
+| EKS | Kubernetes Platform |
+| Redis | Caching Layer |
+| Helm | Package Management |
+| Prometheus | Monitoring |
+| Grafana | Visualization |
+
+---
+
+## 🎯 Key Features
+
+✅ Production-Style DevSecOps Pipeline
+
+✅ Automated Security Validation
 
 ✅ GitOps Deployment Strategy
 
-✅ ArgoCD Auto Sync
+✅ Continuous Delivery with ArgoCD
 
 ✅ Kubernetes Rolling Updates
 
 ✅ Zero Downtime Deployment
 
-✅ Prometheus Monitoring
-
-✅ Grafana Dashboards
+✅ Monitoring and Observability
 
 ✅ Email Notifications
 
 ✅ Secure Credential Management
 
+✅ Fully Automated End-to-End Flow
+
 ---
 
-# 📋 Prerequisites
+## 🌍 Deployment Environment
 
-## AWS EC2 Instances
-
-### Jenkins Master
-
-| Resource | Value |
-|----------|--------|
-| Instance Type | t2.large |
-| CPU | 2 vCPU |
-| RAM | 8 GB |
-| Storage | 30 GB |
-
-### Jenkins Worker
-
-| Resource | Value |
-|----------|--------|
-| Instance Type | t2.large |
-| CPU | 2 vCPU |
-| RAM | 8 GB |
-| Storage | 30 GB |
-
-### Region
-
-```text
-us-west-1
+```yaml
+Cloud Provider: AWS
+Region: ap-south-1
+Kubernetes: Amazon EKS
+Master Instance: t3.small
+Worker Instance: t3.small
+Monitoring: Prometheus + Grafana
+CI Tool: Jenkins
+CD Tool: ArgoCD
+Container Registry: DockerHub
 ```
 
 ---
 
-# 🐳 Install Docker
-
-```bash
-sudo apt update
-
-sudo apt install docker.io -y
-
-sudo usermod -aG docker ubuntu
-
-newgrp docker
-```
-
----
-
-# 🔧 Install Jenkins
-
-```bash
-sudo apt update -y
-
-sudo apt install fontconfig openjdk-21-jre -y
-
-sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
-https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
-
-echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
-https://pkg.jenkins.io/debian-stable binary/ \
-| sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-
-sudo apt update -y
-
-sudo apt install jenkins -y
-```
-
-Access Jenkins:
-
-```text
-http://<JENKINS_IP>:8080
-```
-
----
-
-# ☁️ Install AWS CLI
-
-```bash
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" \
--o "awscliv2.zip"
-
-sudo apt install unzip
-
-unzip awscliv2.zip
-
-sudo ./aws/install
-
-aws configure
-```
-
-Verify:
-
-```bash
-aws sts get-caller-identity
-```
-
----
-
-# ☸️ Install kubectl
-
-```bash
-curl -LO \
-"https://dl.k8s.io/release/$(curl -L -s \
-https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-
-chmod +x kubectl
-
-sudo mv kubectl /usr/local/bin/
-
-kubectl version --client
-```
-
----
-
-# 🚀 Install eksctl
-
-```bash
-curl --silent --location \
-"https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" \
-| tar xz -C /tmp
-
-sudo mv /tmp/eksctl /usr/local/bin
-
-eksctl version
-```
-
----
-
-# ☸️ Create EKS Cluster
-
-## Create Cluster
-
-```bash
-eksctl create cluster \
---name=wanderlust \
---region=us-west-1 \
---version=1.34 \
---without-nodegroup
-```
-
-## Associate OIDC
-
-```bash
-eksctl utils associate-iam-oidc-provider \
---region us-west-1 \
---cluster wanderlust \
---approve
-```
-
-## Create Node Group
-
-```bash
-eksctl create nodegroup \
---cluster=wanderlust \
---region=us-west-1 \
---name=wanderlust \
---node-type=t3.medium \
---nodes=2 \
---nodes-min=2 \
---nodes-max=3 \
---node-volume-size=30
-```
-
----
-
-# 👷 Jenkins Worker Setup
-
-Install Java:
-
-```bash
-sudo apt update -y
-
-sudo apt install fontconfig openjdk-17-jre -y
-```
-
-Install Docker:
-
-```bash
-sudo apt install docker.io -y
-
-sudo usermod -aG docker ubuntu
-
-newgrp docker
-```
-
-Generate SSH Keys:
-
-```bash
-ssh-keygen
-```
-
-Add Jenkins Worker as a Jenkins Agent using SSH credentials.
-
----
-
-# 🔍 Install Trivy
-
-```bash
-sudo apt-get install wget apt-transport-https gnupg lsb-release -y
-
-wget -qO - \
-https://aquasecurity.github.io/trivy-repo/deb/public.key \
-| sudo apt-key add -
-
-echo deb https://aquasecurity.github.io/trivy-repo/deb \
-$(lsb_release -sc) main \
-| sudo tee -a /etc/apt/sources.list.d/trivy.list
-
-sudo apt-get update -y
-
-sudo apt-get install trivy -y
-```
-
-Filesystem Scan:
-
-```bash
-trivy fs .
-```
-
-Image Scan:
-
-```bash
-trivy image username/app:latest
-```
-
----
-
-# 🔎 SonarQube Setup
-
-Run SonarQube Container:
-
-```bash
-docker run -itd \
---name SonarQube-Server \
--p 9000:9000 \
-sonarqube:community
-```
-
-Access:
-
-```text
-http://<SERVER_IP>:9000
-```
-
-Create:
-
-- Project
-- User Token
-
-Configure Jenkins SonarQube Integration.
-
----
-
-# 🛡️ Jenkins Plugins
-
-Install:
-
-- OWASP Dependency Check
-- SonarQube Scanner
-- Docker
-- Docker Pipeline
-- Pipeline Stage View
-- Email Extension
-
----
-
-# 🔐 Security Pipeline
-
-## Trivy Scan
-
-```bash
-trivy fs .
-```
-
-## OWASP Dependency Check
-
-```text
-Scans application dependencies for known vulnerabilities.
-```
-
-## SonarQube Analysis
-
-```text
-Checks:
-- Bugs
-- Vulnerabilities
-- Security Hotspots
-- Code Smells
-- Maintainability
-```
-
----
-
-# 🔄 CI Pipeline
-
-Stages:
-
-```text
-Checkout Code
-    ↓
-Trivy Scan
-    ↓
-OWASP Dependency Check
-    ↓
-SonarQube Analysis
-    ↓
-Build Docker Image
-    ↓
-Push Docker Image
-    ↓
-Update Kubernetes Manifests
-    ↓
-Push Changes to GitHub
-```
-
----
-
-# 🚀 Install ArgoCD
-
-Create Namespace:
-
-```bash
-kubectl create namespace argocd
-```
-
-Install:
-
-```bash
-kubectl apply -n argocd \
--f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-```
-
-Check Pods:
-
-```bash
-kubectl get pods -n argocd
-```
-
-Expose ArgoCD:
-
-```bash
-kubectl patch svc argocd-server \
--n argocd \
--p '{"spec":{"type":"NodePort"}}'
-```
-
-Get Password:
-
-```bash
-kubectl -n argocd get secret \
-argocd-initial-admin-secret \
--o jsonpath="{.data.password}" \
-| base64 -d
-```
-
-Login:
-
-```text
-Username: admin
-Password: <generated-password>
-```
-
----
-
-# 🔄 CD Pipeline
-
-GitOps Flow:
-
-```text
-Jenkins
-   ↓
-Update Manifest
-   ↓
-GitHub
-   ↓
-ArgoCD Detects Change
-   ↓
-Auto Sync
-   ↓
-AWS EKS Deployment
-```
-
-Deployment Strategy:
-
-```text
-Rolling Update
-Zero Downtime
-```
-
----
-
-# 📧 Email Notifications
-
-Enable Gmail App Password.
-
-Configure Jenkins:
-
-```text
-Manage Jenkins
-→ System
-→ Extended Email Notification
-```
-
-SMTP:
-
-```text
-smtp.gmail.com
-
-Port: 465
-
-SSL: Enabled
-```
-
----
-
-# 📊 Monitoring Setup
-
-## Install Helm
-
-```bash
-curl -fsSL -o get_helm.sh \
-https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-
-chmod 700 get_helm.sh
-
-./get_helm.sh
-```
-
----
-
-## Add Repository
-
-```bash
-helm repo add prometheus-community \
-https://prometheus-community.github.io/helm-charts
-
-helm repo update
-```
-
----
-
-## Create Namespace
-
-```bash
-kubectl create namespace prometheus
-```
-
----
-
-## Install Monitoring Stack
-
-```bash
-helm install monitoring \
-prometheus-community/kube-prometheus-stack \
--n prometheus
-```
-
-Verify:
-
-```bash
-kubectl get pods -n prometheus
-```
-
----
-
-# 📈 Grafana
-
-Get Password:
-
-```bash
-kubectl get secret \
--n prometheus \
-monitoring-grafana \
--o jsonpath="{.data.admin-password}" \
-| base64 --decode
-```
-
-Default Username:
-
-```text
-admin
-```
-
----
-
-# 📊 Monitoring Capabilities
-
-Prometheus Monitors:
-
-- Nodes
-- Pods
-- Deployments
-- Services
-- Cluster Health
-
-Grafana Dashboards:
-
-- Kubernetes Cluster
-- Node Metrics
-- Application Metrics
-- Resource Usage
-- Workload Health
-
----
-
-# 📁 Deployment Flow
+## 📈 End-to-End Flow
 
 ```text
 Developer
-   ↓
+   │
+   ▼
 GitHub
-   ↓
+   │
+   ▼
 Jenkins CI
-   ↓
-Security Scans
-   ↓
+   │
+   ├── OWASP
+   ├── SonarQube
+   ├── Trivy
+   │
+   ▼
 Docker Build
-   ↓
+   │
+   ▼
 DockerHub
-   ↓
-Manifest Update
-   ↓
+   │
+   ▼
+Jenkins CD
+   │
+   ▼
+Update Kubernetes Manifests
+   │
+   ▼
 GitHub
-   ↓
+   │
+   ▼
 ArgoCD
-   ↓
-AWS EKS
-   ↓
-Production
-   ↓
+   │
+   ▼
+Amazon EKS
+   │
+   ▼
+Application Deployment
+   │
+   ▼
 Prometheus
-   ↓
+   │
+   ▼
 Grafana
+   │
+   ▼
+Email Notification
 ```
 
 ---
 
-# ✅ Project Outcomes
+## 👨‍💻 Author
 
-- Fully Automated CI/CD
-- DevSecOps Best Practices
-- GitOps Deployment Model
-- AWS EKS Production Deployment
-- Automated Security Validation
-- Continuous Monitoring
-- Scalable Kubernetes Infrastructure
-- Zero Downtime Releases
-
----
-
-# 🧹 Cleanup
-
-Delete EKS Cluster:
-
-```bash
-eksctl delete cluster \
---name=wanderlust \
---region=us-west-1
-```
-
----
-
-# 📌 Author
-
-DevSecOps GitOps EKS Platform
+### DevSecOps + GitOps Platform on AWS EKS
 
 Built using:
 
-- GitHub
 - Jenkins
 - Docker
 - SonarQube
 - Trivy
 - OWASP Dependency Check
 - ArgoCD
-- AWS EKS
 - Kubernetes
+- AWS EKS
 - Prometheus
 - Grafana
 - Redis
+
+---
+⭐ If you found this project useful, consider giving it a star.
