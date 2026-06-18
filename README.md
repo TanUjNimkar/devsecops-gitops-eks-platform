@@ -1,83 +1,51 @@
 # 🚀 DevSecOps + GitOps Platform on AWS EKS
 
-A production-style DevSecOps project demonstrating the deployment of a three-tier MERN application on Amazon EKS using Jenkins, SonarQube, OWASP Dependency Check, Trivy, Docker, ArgoCD, Prometheus, and Grafana.
+A production-grade DevSecOps project demonstrating the deployment of a three-tier MERN application on Amazon EKS using Jenkins, SonarQube, OWASP Dependency Check, Trivy, Docker, ArgoCD, Prometheus, and Grafana.
 
 ---
 
 ## 📌 Project Deployment Flow
 
 <p align="center">
-  <img src="./Assets/DevSecOps+GitOps.gif" alt="DevSecOps GitOps Flow" width="100%">
+  <img src="./Assets/DevSecOps+GitOps.gif" alt="DevSecOps GitOps Flow">
 </p>
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ Architecture
 
-This project implements a complete DevSecOps and GitOps workflow:
-
-```text
-Developer
-   │
-   ▼
-GitHub Repository
-   │
-   ▼
-Jenkins CI Pipeline
-   │
-   ├── OWASP Dependency Check
-   ├── SonarQube Analysis
-   ├── Trivy Security Scan
-   │
-   ▼
-Docker Build & Push
-   │
-   ▼
-DockerHub
-   │
-   ▼
-Jenkins CD Pipeline
-   │
-   ▼
-Update Kubernetes Manifests
-   │
-   ▼
-GitHub
-   │
-   ▼
-ArgoCD Auto Sync
-   │
-   ▼
-AWS EKS Cluster
-   │
-   ▼
-Kubernetes Deployment
-   │
-   ▼
-Prometheus + Grafana
-   │
-   ▼
-Email Notifications
-```
+<p align="center">
+  <img src="./Assets/architectures.png" alt="Architecture Diagram">
+</p>
 
 ---
 
-## 🛠️ Technology Stack
+## 🔄 CI/CD Workflow
 
-### Source Control
+<p align="center">
+  <img src="./Assets/flow.png" alt="CI CD Flow">
+</p>
+
+---
+
+## 🛠️ Tech Stack
+
+### Source Code Management
 - GitHub
 
-### CI/CD
+### Continuous Integration
 - Jenkins
-- ArgoCD
+
+### Security & Code Quality
+- OWASP Dependency Check
+- SonarQube
+- Trivy
 
 ### Containerization
 - Docker
 
-### Security
-- OWASP Dependency Check
-- SonarQube
-- Trivy
+### Continuous Deployment
+- ArgoCD
 
 ### Kubernetes & Cloud
 - AWS EKS
@@ -86,33 +54,30 @@ Email Notifications
 - eksctl
 - Redis
 
-### Monitoring
+### Monitoring & Observability
 - Prometheus
 - Grafana
-
-### Notifications
-- Gmail SMTP
 
 ---
 
 ## ☁️ AWS Infrastructure
 
 | Component | Configuration |
-|------------|---------------|
+|------------|--------------|
 | AWS Region | ap-south-1 (Mumbai) |
 | Jenkins Master | t3.small |
 | Jenkins Worker | t3.small |
 | EKS Worker Nodes | t3.small |
 | Storage | 30 GB |
-| Kubernetes | Amazon EKS |
+| Kubernetes Platform | Amazon EKS |
 
 ---
 
-## 🔄 CI Pipeline (Jenkins)
+## 🔐 DevSecOps Pipeline
 
-### Stages
+### Jenkins CI Pipeline
 
-✅ Code Checkout
+✅ Source Code Checkout
 
 ✅ OWASP Dependency Check
 
@@ -126,81 +91,71 @@ Email Notifications
 
 ✅ Trigger CD Pipeline
 
-### Security Checks
+### Security Gates
 
 #### OWASP Dependency Check
 
-- Detect vulnerable dependencies
-- Generate security reports
+- Detects vulnerable dependencies
+- Generates vulnerability reports
 
 #### SonarQube
 
-- Code Quality Analysis
-- Bug Detection
-- Vulnerability Detection
+- Static Code Analysis
+- Code Smells Detection
 - Security Hotspots
+- Vulnerability Detection
 - Quality Gate Validation
 
 #### Trivy
 
-- Filesystem Scan
+- Filesystem Scanning
 - Vulnerability Detection
 - Secret Scanning
 - Misconfiguration Detection
 
 ---
 
-## 🚀 CD Pipeline (GitOps)
+## 🚀 GitOps Deployment Pipeline
 
-### Stages
+### Jenkins CD Pipeline
 
 ✅ Update Docker Image Version
 
-✅ Commit Changes to GitHub
+✅ Commit Updated Manifest
+
+✅ Push Changes to GitHub
 
 ✅ ArgoCD Detects Changes
 
-✅ Automatic Sync
+✅ Automatic Synchronization
 
 ✅ Kubernetes Rolling Deployment
 
-✅ Zero Downtime Release
+✅ Zero Downtime Deployment
 
 ---
 
-## 🔐 DevSecOps Workflow
+## 📸 Jenkins CI Pipeline
 
-```text
-GitHub
-   │
-   ▼
-Jenkins CI
-   │
-   ├── OWASP Scan
-   ├── SonarQube Scan
-   ├── Trivy Scan
-   │
-   ▼
-Docker Build
-   │
-   ▼
-DockerHub
-   │
-   ▼
-Jenkins CD
-   │
-   ▼
-Update Manifest
-   │
-   ▼
-GitHub
-   │
-   ▼
-ArgoCD
-   │
-   ▼
-AWS EKS
-```
+<p align="center">
+  <img src="./Assets/jenkins-ci-pipeline.png" alt="Jenkins CI Pipeline">
+</p>
+
+---
+
+## 📸 SonarQube Analysis
+
+<p align="center">
+  <img src="./Assets/Sonar.png" alt="SonarQube Analysis">
+</p>
+
+---
+
+## 📸 ArgoCD Deployment
+
+<p align="center">
+  <img src="./Assets/argocd-application.png" alt="ArgoCD Application">
+</p>
 
 ---
 
@@ -209,23 +164,27 @@ AWS EKS
 Application Components:
 
 ### Frontend
-
-- React
+- React.js
 - NodePort Service
 
 ### Backend
-
 - Node.js
 - Express.js
 - REST APIs
 
 ### Database
-
 - MongoDB
 
 ### Cache
-
 - Redis
+
+### Deployment Strategy
+
+```text
+Rolling Updates
+Zero Downtime Deployment
+Auto Sync using ArgoCD
+```
 
 ---
 
@@ -233,12 +192,13 @@ Application Components:
 
 ### Prometheus
 
-Collects:
+Monitors:
 
-- Node Metrics
-- Pod Metrics
-- Deployment Metrics
-- Cluster Metrics
+- Kubernetes Nodes
+- Pods
+- Deployments
+- Services
+- Cluster Health
 
 ### Grafana
 
@@ -248,99 +208,54 @@ Visualizes:
 - Memory Usage
 - Pod Health
 - Node Health
-- Cluster Status
+- Cluster Metrics
+
+---
+
+## 📸 Grafana Dashboard
+
+<p align="center">
+  <img src="./Assets/grafana-dashboard.png" alt="Grafana Dashboard">
+</p>
+
+---
+
+## 📸 Prometheus Dashboard
+
+<p align="center">
+  <img src="./Assets/Prometheus.png" alt="Prometheus Dashboard">
+</p>
 
 ---
 
 ## 📧 Email Notifications
 
-Automatic email notifications are sent for:
+Configured Jenkins Email Extension Plugin for:
 
-- Successful Build
-- Failed Build
-- Deployment Status
-- Pipeline Completion
+✅ Build Success Notifications
 
-Configured using:
+✅ Build Failure Notifications
 
-- Gmail SMTP
-- Jenkins Email Extension Plugin
+✅ Deployment Status Notifications
+
+✅ Security Scan Status Notifications
 
 ---
 
-## 🔧 Tools Used
-
-| Tool | Purpose |
-|--------|---------|
-| GitHub | Source Code Management |
-| Jenkins | Continuous Integration |
-| Docker | Containerization |
-| OWASP | Dependency Security Scan |
-| SonarQube | Code Quality Analysis |
-| Trivy | Vulnerability Scanning |
-| ArgoCD | GitOps Deployment |
-| EKS | Kubernetes Platform |
-| Redis | Caching Layer |
-| Helm | Package Management |
-| Prometheus | Monitoring |
-| Grafana | Visualization |
-
----
-
-## 🎯 Key Features
-
-✅ Production-Style DevSecOps Pipeline
-
-✅ Automated Security Validation
-
-✅ GitOps Deployment Strategy
-
-✅ Continuous Delivery with ArgoCD
-
-✅ Kubernetes Rolling Updates
-
-✅ Zero Downtime Deployment
-
-✅ Monitoring and Observability
-
-✅ Email Notifications
-
-✅ Secure Credential Management
-
-✅ Fully Automated End-to-End Flow
-
----
-
-## 🌍 Deployment Environment
-
-```yaml
-Cloud Provider: AWS
-Region: ap-south-1
-Kubernetes: Amazon EKS
-Master Instance: t3.small
-Worker Instance: t3.small
-Monitoring: Prometheus + Grafana
-CI Tool: Jenkins
-CD Tool: ArgoCD
-Container Registry: DockerHub
-```
-
----
-
-## 📈 End-to-End Flow
+## 🔄 End-to-End Workflow
 
 ```text
 Developer
    │
    ▼
-GitHub
+GitHub Repository
    │
    ▼
-Jenkins CI
+Jenkins CI Pipeline
    │
-   ├── OWASP
-   ├── SonarQube
-   ├── Trivy
+   ├── OWASP Dependency Check
+   ├── SonarQube Analysis
+   ├── Trivy Scan
    │
    ▼
 Docker Build
@@ -349,41 +264,120 @@ Docker Build
 DockerHub
    │
    ▼
-Jenkins CD
+Jenkins CD Pipeline
    │
    ▼
-Update Kubernetes Manifests
+Update Kubernetes Manifest
    │
    ▼
-GitHub
+GitHub Repository
    │
    ▼
-ArgoCD
+ArgoCD Auto Sync
    │
    ▼
-Amazon EKS
+Amazon EKS Cluster
    │
    ▼
 Application Deployment
    │
    ▼
-Prometheus
+Prometheus Monitoring
    │
    ▼
-Grafana
+Grafana Dashboards
    │
    ▼
-Email Notification
+Email Notifications
 ```
+
+---
+
+## 📸 Application Deployment
+
+<p align="center">
+  <img src="./Assets/application-homepage.png" alt="Application Homepage">
+</p>
+
+---
+
+## 🎯 Key Features
+
+✅ End-to-End DevSecOps Implementation
+
+✅ GitOps-Based Deployment Strategy
+
+✅ AWS EKS Kubernetes Deployment
+
+✅ Automated Security Scanning
+
+✅ SonarQube Quality Gates
+
+✅ Dockerized Application
+
+✅ ArgoCD Continuous Delivery
+
+✅ Zero Downtime Deployments
+
+✅ Prometheus Monitoring
+
+✅ Grafana Dashboards
+
+✅ Email Notifications
+
+✅ Secure Credential Management
+
+✅ Fully Automated CI/CD Pipeline
+
+---
+
+## 📂 Repository Structure
+
+```text
+devsecops-gitops-eks-platform
+│
+├── Assets/
+│   ├── DevSecOps+GitOps.gif
+│   ├── architectures.png
+│   ├── flow.png
+│   ├── argocd-application.png
+│   ├── application-homepage.png
+│   ├── grafana-dashboard.png
+│   ├── jenkins-ci-pipeline.png
+│   ├── Prometheus.png
+│   └── Sonar.png
+│
+├── kubernetes/
+├── jenkins/
+├── automation/
+├── monitoring/
+└── README.md
+```
+
+---
+
+## 🏆 Project Highlights
+
+- Production-style DevSecOps implementation
+- Automated CI/CD pipeline
+- Security-first deployment workflow
+- GitOps with ArgoCD
+- Kubernetes on AWS EKS
+- Continuous Monitoring & Observability
+- Infrastructure Automation
+- Cloud-Native Deployment
 
 ---
 
 ## 👨‍💻 Author
 
-### DevSecOps + GitOps Platform on AWS EKS
+### Tanuj Nimkar
 
-Built using:
+DevOps Engineer | Cloud Enthusiast | Kubernetes Practitioner
 
+### Technologies Used
+
+- GitHub
 - Jenkins
 - Docker
 - SonarQube
@@ -397,4 +391,5 @@ Built using:
 - Redis
 
 ---
+
 ⭐ If you found this project useful, consider giving it a star.
