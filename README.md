@@ -253,7 +253,7 @@ Collects metrics from:
 
 Monitoring targets successfully scraped by Prometheus.
 
-![Prometheus Target Health](Assets/prometheus-2.png)
+![Prometheus Target Health](Assets/Prometheus-2.png)
 
 ---
 
